@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karta Polaka — Подготовка к собеседованию</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C0392B;
+    --red-dark: #922B21;
+    --red-light: #FADBD8;
+    --cream: #FAF8F3;
+    --white: #FFFFFF;
+    --ink: #1A1A1A;
+    --ink-mid: #444;
+    --ink-light: #888;
+    --border: #E8E2D9;
+    --gold: #B7860B;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--red);
+    color: white;
+    padding: 60px 40px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 20%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-flag {
+    display: flex;
+    gap: 0;
+    width: 48px;
+    height: 32px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+  .hero-flag-white { width: 100%; height: 50%; background: white; }
+  .hero-flag-red { width: 100%; height: 50%; background: var(--red-dark); }
+  .hero-flag { display: block; }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .hero-sub {
+    font-size: 16px;
+    opacity: 0.85;
+    max-width: 520px;
+    font-weight: 300;
+  }
+  .hero-badge {
+    display: inline-block;
+    margin-top: 20px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .hero-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+  }
+  .hero-author-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    border: 1.5px solid rgba(255,255,255,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 500;
+    flex-shrink: 0;
+  }
+  .hero-author-name {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .hero-author-role {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 1px;
+  }
+
+  /* LAYOUT */
+  .main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+  }
+
+  /* SIDEBAR NAV */
+  .sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 20px;
+    padding-top: 32px;
+  }
+  .sidebar-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 12px;
+    padding-left: 12px;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13.5px;
+    color: var(--ink-mid);
+    transition: all 0.18s;
+    margin-bottom: 2px;
+    border: none;
+    background: none;
+    text-align: left;
+    width: 100%;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .nav-item:hover { background: white; color: var(--ink); }
+  .nav-item.active { background: white; color: var(--red); font-weight: 500; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .nav-icon { font-size: 15px; flex-shrink: 0; }
+  .nav-count {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--ink-light);
+    background: var(--border);
+    padding: 1px 7px;
+    border-radius: 10px;
+  }
+  .nav-item.active .nav-count { background: var(--red-light); color: var(--red); }
+
+  /* CONTENT */
+  .content {
+    flex: 1;
+    min-width: 0;
+    padding-top: 32px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-header {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .section-desc {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--ink-light);
+  }
+
+  /* QA CARD */
+  .qa-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .qa-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+
+  .qa-head {
+    padding: 18px 22px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    user-select: none;
+  }
+  .qa-head-left { flex: 1; min-width: 0; }
+  .qa-num {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--red);
+    letter-spacing: 0.08em;
+    margin-bottom: 3px;
+  }
+  .qa-polish {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 3px;
+  }
+  .qa-russian {
+    font-size: 13px;
+    color: var(--ink-light);
+  }
+  .qa-toggle {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: all 0.2s;
+  }
+  .qa-toggle svg { transition: transform 0.25s; }
+  .qa-card.open .qa-toggle { background: var(--red); border-color: var(--red); }
+  .qa-card.open .qa-toggle svg { transform: rotate(180deg); }
+  .qa-card.open .qa-toggle svg path { stroke: white; }
+
+  .qa-body {
+    display: none;
+    border-top: 1px solid var(--border);
+  }
+  .qa-card.open .qa-body { display: block; }
+
+  .tabs-row {
+    display: flex;
+    gap: 4px;
+    padding: 14px 22px 0;
+    border-bottom: 1px solid var(--border);
+    background: #FEFEFE;
+  }
+  .tab-btn {
+    padding: 7px 14px;
+    font-size: 12.5px;
+    font-weight: 500;
+    border: none;
+    background: none;
+    color: var(--ink-light);
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+    margin-bottom: -1px;
+  }
+  .tab-btn.active { color: var(--red); border-bottom-color: var(--red); }
+  .tab-btn:hover { color: var(--ink); }
+
+  .answer-panel { display: none; padding: 22px 22px 24px; }
+  .answer-panel.active { display: block; }
+
+  .answer-block {
+    margin-bottom: 14px;
+    padding: 16px 18px;
+    border-radius: 8px;
+    background: var(--cream);
+    border-left: 3px solid var(--red);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .answer-block:last-child { margin-bottom: 0; }
+
+  .translation-block {
+    margin-bottom: 12px;
+    padding: 14px 18px;
+    border-radius: 8px;
+    background: #F8F8F8;
+    border-left: 3px solid var(--border);
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-mid);
+  }
+
+  .variants-wrap { }
+  .variant-item {
+    margin-bottom: 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .variant-label {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 14px;
+    background: var(--red-light);
+    color: var(--red-dark);
+    letter-spacing: 0.04em;
+  }
+  .variant-text {
+    padding: 14px;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+  .variant-tr {
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--ink-light);
+    border-top: 1px solid var(--border);
+  }
+
+  .tip-box {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: #FFFBEB;
+    border: 1px solid #F5D76E;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #7D5A00;
+    display: flex;
+    gap: 10px;
+  }
+  .tip-box::before { content: '💡'; flex-shrink: 0; font-size: 15px; }
+
+  /* MOBILE */
+  .mobile-nav {
+    display: none;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 16px 20px 0;
+    scrollbar-width: none;
+  }
+  .mobile-nav::-webkit-scrollbar { display: none; }
+  .mobile-nav-btn {
+    flex-shrink: 0;
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: white;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink-mid);
+    white-space: nowrap;
+  }
+  .mobile-nav-btn.active { background: var(--red); color: white; border-color: var(--red); }
+
+  @media (max-width: 700px) {
+    .sidebar { display: none; }
+    .mobile-nav { display: flex; }
+    .main { padding: 0 16px 60px; }
+    .hero { padding: 40px 20px 36px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-flag">
+      <div style="height:50%;background:white;width:100%"></div>
+      <div style="height:50%;background:#922B21;width:100%"></div>
+    </div>
+    <h1>Karta Polaka<br>Подготовка к собеседованию</h1>
+    <p class="hero-sub">Все вопросы, три варианта ответа на польском, переводы и подсказки — для белорусов в 2026 году</p>
+    <span class="hero-badge">✓ Актуально для 2026 года · Белосток и Варшава</span>
+    <div class="hero-author">
+      <div class="hero-author-avatar">PW</div>
+      <div>
+        <div class="hero-author-name">Paweł Viarenich</div>
+        <div class="hero-author-role">Nauczyciel języka polskiego · Учитель польского языка</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-nav" id="mobileNav"></div>
+
+<div class="main">
+  <nav class="sidebar">
+    <div class="sidebar-title">Разделы</div>
+    <div id="sidebarNav"></div>
+  </nav>
+  <div class="content" id="content"></div>
+</div>
+
+<script>
+const sections = [
+  {
+    id: 's0', icon: '👤', label: 'О себе',
+    title: 'О себе', ru: 'Самые первые вопросы — заучите наизусть',
+    questions: [
+      {
+        pl: 'Proszę się przedstawić',
+        ru: 'Представьтесь, пожалуйста',
+        answers: [
+          'Nazywam się [Imię Nazwisko]. Urodziłem/Urodziłam się [data] w [miasto] na Białorusi. Od urodzenia mieszkam na Białorusi, ale od kilku lat aktywnie uczę się języka polskiego i interesuję się polską kulturą.',
+          'Pracuję jako [zawód] / Jestem studentem/studentką [uczelni]. W wolnym czasie czytam polskie książki, oglądam polskie filmy i staram się jak najczęściej rozmawiać po polsku z osobami, które znają ten język.',
+          'Ubiegam się o Kartę Polaka, ponieważ mam polskie korzenie — moja [babcia/prababcia] była Polką. Zależy mi na pielęgnowaniu tej części mojej tożsamości i pogłębianiu kontaktów z Polską.'
+        ],
+        translations: [
+          'Меня зовут [Имя Фамилия]. Я родился/родилась [дата] в [город] в Беларуси. С рождения живу в Беларуси, но уже несколько лет активно учу польский язык и интересуюсь польской культурой.',
+          'Работаю [кем] / Я студент/студентка [университет]. В свободное время читаю польские книги, смотрю польские фильмы и стараюсь как можно чаще разговаривать по-польски.',
+          'Я подаю на Карту Поляка, потому что у меня польские корни — моя [бабушка/прабабушка] была полькой. Мне важно хранить эту часть своей идентичности и углублять связь с Польшей.'
+        ],
+        variants: [
+          { label: 'Вариант — если молодой студент', pl: 'Jestem studentem/studentką drugiego roku [kierunek] na Białoruskim Uniwersytecie Państwowym w Mińsku. Języka polskiego uczę się od trzech lat na kursach i samodzielnie.', ru: 'Я студент/студентка второго курса [специальность] в Белорусском государственном университете в Минске. Учу польский уже три года на курсах и самостоятельно.' },
+          { label: 'Вариант — если взрослый', pl: 'Pracuję w branży [np. IT / medycznej / budowlanej] od ponad dziesięciu lat. Polska kultura była obecna w moim życiu od dzieciństwa dzięki polskim korzeniom naszej rodziny.', ru: 'Работаю в сфере [например, IT / медицина / строительство] уже более десяти лет. Польская культура присутствовала в моей жизни с детства благодаря польским корням нашей семьи.' }
+        ],
+        tip: 'Эту часть нужно знать идеально. Говорите уверенно, без пауз. Консул смотрит не только на содержание, но и на уверенность в языке.'
+      },
+      {
+        pl: 'Dlaczego ubiega się Pan/Pani o Kartę Polaka?',
+        ru: 'Зачем вам Карта Поляка?',
+        answers: [
+          'Karta Polaka to dla mnie przede wszystkim potwierdzenie mojej polskiej tożsamości. Polska krew płynie w moich żyłach — moja [babcia] była Polką i zawsze przekazywała nam polską kulturę, język i wartości.',
+          'Chciałbym/Chciałabym dzięki Karcie Polaka mieć łatwiejszy dostęp do polskich instytucji kulturalnych — bibliotek, muzeów, teatrów. Zależy mi też na możliwości pogłębiania nauki języka polskiego w Polsce.',
+          'Karta Polaka jest dla mnie symbolem przynależności do Narodu Polskiego mimo rozdzielenia historycznego. Czuję się duchowo związany/związana z Polską i chcę, żeby ta więź była formalnie uznana.'
+        ],
+        translations: [
+          'Карта Поляка — это для меня прежде всего подтверждение моей польской идентичности. В моих жилах польская кровь — моя [бабушка] была полькой и всегда передавала нам польскую культуру, язык и ценности.',
+          'Благодаря Карте Поляка я хотел/хотела бы иметь более лёгкий доступ к польским культурным учреждениям — библиотекам, музеям, театрам. Мне также важна возможность углублять изучение польского языка в Польше.',
+          'Карта Поляка для меня символ принадлежности к Польскому народу, несмотря на историческое разделение. Я чувствую духовную связь с Польшей и хочу, чтобы эта связь была официально признана.'
+        ],
+        variants: [],
+        tip: 'Не говорите про работу, визы или покупки. Акцент только на культуре, семье и идентичности — именно это хочет слышать консул.'
+      },
+      {
+        pl: 'Gdzie nauczył/nauczyła się Pan/Pani języka polskiego?',
+        ru: 'Где вы выучили польский язык?',
+        answers: [
+          'Pierwszych słów po polsku nauczyłem/nauczyłam się w domu — moja babcia mówiła do mnie po polsku od małego, śpiewała polskie piosenki i opowiadała bajki. To był mój pierwszy kontakt z tym językiem.',
+          'Gdy dorosłem/dorosłam, zapisałem/zapisałam się na kurs języka polskiego. Uczęszczam na zajęcia regularnie od [X] lat, a mój poziom oceniam na A2-B1. Dodatkowo samodzielnie ćwiczę przy pomocy podcastów, filmów i polskiej literatury.',
+          'Staram się też praktykować język podczas wyjazdów do Polski. Rozmawiałem/rozmawiałam z Polakami, robiłem/robiłam zakupy, czytałem/czytałam tablice i menu — to najlepsza praktyka żywego języka.'
+        ],
+        translations: [
+          'Первым польским словам я научился/научилась дома — бабушка говорила со мной по-польски с детства, пела польские песни и рассказывала сказки. Это был мой первый контакт с языком.',
+          'Когда вырос/выросла, записался/записалась на курсы польского языка. Хожу на занятия регулярно уже [X] лет, свой уровень оцениваю как A2-B1. Дополнительно самостоятельно занимаюсь с подкастами, фильмами и польской литературой.',
+          'Я также стараюсь практиковать язык во время поездок в Польшу. Разговаривал/разговаривала с поляками, делал/делала покупки, читал/читала вывески и меню — это лучшая практика живого языка.'
+        ],
+        variants: [],
+        tip: 'Если язык слабоват — честно скажите «uczę się, poziom A2» и сразу объясните, что стараетесь. Консул ценит честность больше, чем притворство.'
+      }
+    ]
+  },
+  {
+    id: 's1', icon: '👨‍👩‍👧', label: 'Семья и корни',
+    title: 'Семья и корни', ru: 'Польский предок — главное основание для КП',
+    questions: [
+      {
+        pl: 'Proszę opowiedzieć o swojej rodzinie',
+        ru: 'Расскажите о своей семье',
+        answers: [
+          'Moja rodzina jest [duża/nieduża]. Mam rodziców — mój ojciec nazywa się [imię], pracuje jako [zawód], a mama jest [zawód]. Mam też [brata/siostrę], który/która mieszka w [miasto].',
+          'Najważniejszą osobą, jeśli chodzi o moje polskie korzenie, jest moja babcia ze strony [ojca/matki] — [imię]. Urodziła się w [miejscowość] i była Polką z narodowości. Przeprowadziła się na Białoruś po [wojnie/ślubie/z powodów pracy].',
+          'Babcia do końca życia mówiła po polsku, obchodziła polskie święta i gotowała tradycyjne polskie potrawy. To ona zaszczepił/zaszczepił we mnie miłość do polskiej kultury i języka. Bardzo ją wspominam.'
+        ],
+        translations: [
+          'Моя семья [большая/небольшая]. У меня есть родители — отца зовут [имя], работает [кем], а мама — [кто]. Есть также [брат/сестра], который/которая живёт в [город].',
+          'Самый важный человек, когда речь идёт о моих польских корнях, — моя бабушка со стороны [отца/матери] — [имя]. Она родилась в [место] и была полькой по национальности. Переехала в Беларусь после [войны/замужества/по работе].',
+          'Бабушка до конца жизни говорила по-польски, отмечала польские праздники и готовила традиционные польские блюда. Именно она привила мне любовь к польской культуре и языку. Я очень её помню.'
+        ],
+        variants: [
+          { label: 'Если прабабушка/прадедушка', pl: 'Moja prababcia [imię] urodziła się w Polsce i była rodowitą Polką. Po zakończeniu II Wojny Światowej zamieszkała na Białorusi. Jej córka, moja babcia, przekazała nam polskie tradycje i część języka.', ru: 'Моя прабабушка [имя] родилась в Польше и была настоящей полькой. После Второй мировой войны поселилась в Беларуси. Её дочь, моя бабушка, передала нам польские традиции и частично язык.' }
+        ],
+        tip: 'Назовите конкретное место рождения польского предка — «Grodna», «Brest», «Wilno», «Poznań» и т.д. Чем конкретнее, тем убедительнее.'
+      },
+      {
+        pl: 'Jakie polskie tradycje kultywuje Pana/Pani rodzina?',
+        ru: 'Какие польские традиции хранит ваша семья?',
+        answers: [
+          'W naszej rodzinie najważniejszym polskim świętem jest Boże Narodzenie. Wigilia u nas jest wyjątkowa — zawsze przygotowujemy dwanaście potraw postnych: barszcz z uszkami, kapustę z grzybami, pierogi, karpia, śledzia, makowiec i inne. Czekamy na pierwszą gwiazdkę i dopiero wtedy siadamy do stołu.',
+          'Na Wielkanoc mama przygotowuje święconkę — koszyczek z chlebem, jajkami, kiełbasą i babką wielkanocną — i zanosiliśmy go do kościoła, żeby poświęcić. W Lany Poniedziałek oblewamy się wodą zgodnie z tradycją śmigus-dyngus.',
+          'Babcia uczyła mnie polskich piosenek ludowych i kolęd. Szczególnie pamiętam „Góralu, czy ci nie żal" i „Mazurka Dąbrowskiego". W naszym domu były też polskie książki i modlitewniki, które przekazywano z pokolenia na pokolenie.'
+        ],
+        translations: [
+          'В нашей семье самый важный польский праздник — Рождество. Вигилия у нас особенная — всегда готовим двенадцать постных блюд: борщ с ушками, капусту с грибами, пироги, карпа, селёдку, маковый рулет и другие. Ждём первую звезду и только тогда садимся за стол.',
+          'На Пасху мама готовит свенцонку — корзинку с хлебом, яйцами, колбасой и пасхальным кексом — и несли её в церковь освящать. В Поливальный понедельник обливаем друг друга водой по традиции śmigus-dyngus.',
+          'Бабушка учила меня польским народным песням и колядкам. Особенно помню «Góralu, czy ci nie żal» и «Мазурку Домбровского». В нашем доме также были польские книги и молитвенники, которые передавались из поколения в поколение.'
+        ],
+        variants: [],
+        tip: '12 блюд на Вигилии — обязательный факт! Назовите хотя бы 5-6: barszcz, pierogi, kapusta z grzybami, karp, śledź, kutia, makowiec, kompot z suszu.'
+      }
+    ]
+  },
+  {
+    id: 's2', icon: '🏛️', label: 'История',
+    title: 'История Польши', ru: 'Ключевые события от средневековья до наших дней',
+    questions: [
+      {
+        pl: 'Kiedy Polska odzyskała niepodległość?',
+        ru: 'Когда Польша восстановила независимость?',
+        answers: [
+          'Polska odzyskała niepodległość 11 listopada 1918 roku. Był to koniec 123 lat zaborów — Polska była podzielona między Rosję, Prusy i Austrię od końca XVIII wieku. Data ta jest dziś Narodowym Świętem Niepodległości.',
+          'Kluczową postacią odrodzenia Polski był Józef Piłsudski, który w 1918 roku przejął władzę wojskową w Warszawie. Jego Legiony walczyły przez lata o wolność Polski. To on jest symbolem odbudowy państwa polskiego.',
+          'Polska niepodległość była jednak krucha — już w 1920 roku Polska musiała bronić się przed inwazją bolszewicką w wojnie polsko-bolszewickiej, wygrywając słynną Bitwę Warszawską zwaną „Cudem nad Wisłą". Niepodległość przetrwała do 1939 roku, gdy Niemcy napadły na Polskę.'
+        ],
+        translations: [
+          'Польша восстановила независимость 11 ноября 1918 года. Это был конец 123 лет разделов — Польша была поделена между Россией, Пруссией и Австрией с конца XVIII века. Этот день сегодня отмечается как Национальный праздник Независимости.',
+          'Ключевой фигурой возрождения Польши был Юзеф Пилсудский, который в 1918 году взял военную власть в Варшаве. Его Легионы годами сражались за свободу Польши. Он — символ восстановления польского государства.',
+          'Польская независимость была хрупкой — уже в 1920 году Польша должна была защищаться от большевистского вторжения в польско-большевистской войне, выиграв знаменитую Варшавскую битву, известную как «Чудо на Висле». Независимость просуществовала до 1939 года, когда Германия напала на Польшу.'
+        ],
+        variants: [],
+        tip: 'Запомните: 11 ноября 1918 — День независимости. 3 мая — День Конституции 1791 года. Это разные даты и разные праздники!'
+      },
+      {
+        pl: 'Co to jest bitwa pod Grunwaldem?',
+        ru: 'Что такое Грюнвальдская битва?',
+        answers: [
+          'Bitwa pod Grunwaldem odbyła się 15 lipca 1410 roku. Była to jedna z największych bitew w historii średniowiecznej Europy — po obu stronach walczyło łącznie około 60 tysięcy rycerzy. Wojska polsko-litewskie pod dowództwem króla Władysława II Jagiełły starły się z Zakonem Krzyżackim.',
+          'Krzyżacy byli potężnym zakonem rycerskim, który od XIII wieku napadał na ziemie polskie i litewskie. Ich klęska pod Grunwaldem złamała potęgę Zakonu i otworzyła drogę do odzyskania Pomorza przez Polskę. Była to przełomowa bitwa dla całego regionu Europy Środkowo-Wschodniej.',
+          'Bitwa pod Grunwaldem stała się symbolem jedności polsko-litewskiej i jest do dziś pamiętana jako jeden z największych tryumfów militarnych w historii Polski. Co roku 15 lipca na polach Grunwaldu odbywa się wielka inscenizacja historyczna, przyciągająca tysiące widzów.'
+        ],
+        translations: [
+          'Грюнвальдская битва состоялась 15 июля 1410 года. Это была одна из крупнейших битв в истории средневековой Европы — с обеих сторон участвовало около 60 тысяч рыцарей. Польско-литовские войска под командованием короля Владислава II Ягайло сразились с Тевтонским орденом.',
+          'Тевтонский орден был мощным рыцарским орденом, который с XIII века нападал на польские и литовские земли. Их поражение при Грюнвальде сломило мощь Ордена и открыло путь к возвращению Поморья Польше. Это была переломная битва для всего региона Центрально-Восточной Европы.',
+          'Грюнвальдская битва стала символом польско-литовского единства и по сей день помнится как один из величайших военных триумфов в истории Польши. Каждый год 15 июля на Грюнвальдских полях проходит большая историческая реконструкция, привлекающая тысячи зрителей.'
+        ],
+        variants: [],
+        tip: 'Для белоруса эта битва тоже родная — Великое Княжество Литовское (ВКЛ) сражалось вместе с Польшей, а белорусские земли входили в состав ВКЛ. Упомяните это!'
+      },
+      {
+        pl: 'Co to jest Unia Lubelska?',
+        ru: 'Что такое Люблинская уния?',
+        answers: [
+          'Unia Lubelska została zawarta w 1569 roku w Lublinie. Połączyła ona Królestwo Polskie i Wielkie Księstwo Litewskie w jedno państwo — Rzeczpospolitą Obojga Narodów. Był to wynik wieloletnich negocjacji między polską szlachtą a litewską arystokracją.',
+          'Rzeczpospolita Obojga Narodów stała się jednym z największych i najludniejszych państw Europy. Na jej terytorium żyli Polacy, Litwini, Białorusini, Ukraińcy, Żydzi i wiele innych narodów. Był to wyjątkowy twór wielokulturowy jak na swoje czasy.',
+          'Dla mnie jako Białorusina Unia Lubelska ma szczególne znaczenie — ziemie białoruskie były częścią Wielkiego Księstwa Litewskiego, które weszło w skład Rzeczpospolitej. Moi przodkowie byli obywatelami tego samego państwa co Polacy. To właśnie pokazuje głęboką historyczną więź między Polską a Białorusią.'
+        ],
+        translations: [
+          'Люблинская уния была заключена в 1569 году в Люблине. Она объединила Польское королевство и Великое Княжество Литовское в одно государство — Речь Посполитую. Это был результат многолетних переговоров между польской шляхтой и литовской аристократией.',
+          'Речь Посполитая стала одним из крупнейших и наиболее населённых государств Европы. На её территории жили поляки, литовцы, белорусы, украинцы, евреи и многие другие народы. Это было уникальное многонациональное образование для своего времени.',
+          'Для меня как белоруса Люблинская уния имеет особое значение — белорусские земли были частью ВКЛ, вошедшего в состав Речи Посполитой. Мои предки были гражданами того же государства, что и поляки. Это показывает глубокую историческую связь между Польшей и Беларусью.'
+        ],
+        variants: [],
+        tip: 'Связь Беларуси и Польши через ВКЛ — ваш личный аргумент. Используйте его!'
+      },
+      {
+        pl: 'Co to jest Katyń?',
+        ru: 'Что такое Катынь?',
+        answers: [
+          'Katyń to zbrodnia wojenna popełniona w 1940 roku przez sowieckie NKWD. Zamordowano ponad 22 tysiące polskich obywateli — oficerów armii, policjantów, przedstawicieli inteligencji, lekarzy, prawników i inżynierów. Ofiary zostały rozstrzelane strzałem w tył głowy.',
+          'Przez dziesiątki lat Związek Radziecki zaprzeczał swojej odpowiedzialności za tę zbrodnię, zrzucając winę na Niemcy. Dopiero w 1990 roku ZSRR oficjalnie przyznał, że za masakrę odpowiada sowieckie NKWD. Prawda o Katyniu była ukrywana przez pół wieku.',
+          'Katyń jest dla Polaków symbolem sowieckiego terroru i tragedii narodowej. W 2010 roku, podczas podróży na uroczystości upamiętniające ofiary Katynia, rozbił się samolot prezydenta Lecha Kaczyńskiego pod Smoleńskiem. Zginęli prezydent i 95 innych przedstawicieli polskich elit — to podwójny ból Polaków związany z tym miejscem.'
+        ],
+        translations: [
+          'Катынь — это военное преступление, совершённое в 1940 году советским НКВД. Было убито более 22 тысяч польских граждан — офицеров армии, полицейских, представителей интеллигенции, врачей, юристов и инженеров. Жертвы были расстреляны выстрелом в затылок.',
+          'Десятилетиями Советский Союз отрицал свою ответственность за это преступление, перекладывая вину на Германию. Лишь в 1990 году СССР официально признал, что за резню несёт ответственность советское НКВД. Правда о Катыни скрывалась полвека.',
+          'Катынь для поляков — символ советского террора и национальной трагедии. В 2010 году, во время поездки на траурные мероприятия в память о жертвах Катыни, под Смоленском разбился самолёт президента Леха Качиньского. Погибли президент и 95 других представителей польской элиты — это двойная боль поляков, связанная с этим местом.'
+        ],
+        variants: [],
+        tip: 'Знание Катыни очень важно — это тема, которая глубоко ранит поляков. Говорите с уважением и серьёзностью.'
+      },
+      {
+        pl: 'Co to jest „Solidarność"?',
+        ru: 'Что такое «Солидарность»?',
+        answers: [
+          '„Solidarność" to Niezależny Samorządny Związek Zawodowy założony w sierpniu 1980 roku w Stoczni Gdańskiej. Powstał w wyniku strajków robotniczych i szybko stał się masowym ruchem społecznym — w szczytowym momencie liczył ponad 10 milionów członków.',
+          'Na czele „Solidarności" stał Lech Wałęsa — elektryk ze Stoczni, charyzmatyczny przywódca, który w 1983 roku otrzymał Pokojową Nagrodę Nobla. Władze komunistyczne odpowiedziały wprowadzeniem stanu wojennego w grudniu 1981 roku i delegalizacją związku.',
+          'Pomimo represji „Solidarność" przetrwała w podziemiu i w 1989 roku wzięła udział w okrągłostołowych rozmowach z komunistycznym rządem. Czerwcowe wybory 1989 roku przyniosły zwycięstwo opozycji i doprowadziły do pokojowej zmiany systemu w Polsce — to był sygnał dla całej Europy Wschodniej.'
+        ],
+        translations: [
+          '«Солидарность» — это Независимый самоуправляющийся профсоюз, основанный в августе 1980 года на Гданьской судоверфи. Он возник в результате рабочих забастовок и быстро стал массовым общественным движением — в пик насчитывал более 10 миллионов членов.',
+          'Во главе «Солидарности» стоял Лех Валенса — электрик судоверфи, харизматичный лидер, получивший в 1983 году Нобелевскую премию мира. Коммунистические власти ответили введением военного положения в декабре 1981 года и запретом профсоюза.',
+          'Несмотря на репрессии, «Солидарность» выжила в подполье и в 1989 году приняла участие в переговорах «круглого стола» с коммунистическим правительством. Июньские выборы 1989 года принесли победу оппозиции и привели к мирной смене системы в Польше — это стало сигналом для всей Восточной Европы.'
+        ],
+        variants: [],
+        tip: null
+      },
+      {
+        pl: 'Co to jest Cud nad Wisłą?',
+        ru: 'Что такое Чудо на Висле?',
+        answers: [
+          '„Cud nad Wisłą" to popularna nazwa Bitwy Warszawskiej, stoczonej w sierpniu 1920 roku. Wojsko polskie, dowodzone przez Józefa Piłsudskiego, stoczyło decydującą bitwę z nacierającą Armią Czerwoną, która była już pod Warszawą i planowała marsz na Europę Zachodnią.',
+          'Polska wygrała tę bitwę dzięki brawurowej kontrofensywie znad Wieprza — polskie wojsko uderzyło w słaby punkt radzieckiego frontu i rozbiło Armię Czerwoną. Zwycięstwo było tak nieoczekiwane, że zachodni obserwatorzy nazwali je „cudem". Historycy uważają tę bitwę za jedną z ważniejszych w historii XX wieku.',
+          'Zatrzymanie ekspansji bolszewickiej pod Warszawą uratowało Europę Środkową i Zachodnią od sowieckiej rewolucji. Polska obroniła swoją dopiero co odzyskaną niepodległość i umocniła swoje granice. Data Bitwy Warszawskiej — 15 sierpnia — jest dziś Świętem Wojska Polskiego.'
+        ],
+        translations: [
+          '«Чудо на Висле» — популярное название Варшавской битвы, произошедшей в августе 1920 года. Польская армия под командованием Юзефа Пилсудского провела решающее сражение с наступавшей Красной Армией, которая уже стояла под Варшавой и планировала поход в Западную Европу.',
+          'Польша выиграла это сражение благодаря дерзкому контрнаступлению с реки Вепш — польские войска ударили в слабое место советского фронта и разбили Красную Армию. Победа была настолько неожиданной, что западные наблюдатели назвали её «чудом». Историки считают эту битву одной из важнейших в истории XX века.',
+          'Остановка большевистской экспансии под Варшавой спасла Центральную и Западную Европу от советской революции. Польша отстояла свою только что возвращённую независимость и укрепила свои границы. Дата Варшавской битвы — 15 августа — сегодня является Днём Войска Польского.'
+        ],
+        variants: [],
+        tip: '15 августа — это и Święto Wojska Polskiego (День Войска Польского), и годовщина Чуда на Висле. Это одна дата с двойным значением.'
+      }
+    ]
+  },
+  {
+    id: 's3', icon: '🎄', label: 'Праздники',
+    title: 'Праздники и традиции', ru: 'Рождество, Пасха, государственные праздники',
+    questions: [
+      {
+        pl: 'Jak obchodzi się Wigilię w Polsce?',
+        ru: 'Как отмечают Сочельник в Польше?',
+        answers: [
+          'Wigilia, czyli Wieczór Wigilijny 24 grudnia, to najważniejszy wieczór w polskim roku. Rodziny zbierają się przy stole i czekają razem na pojawienie się pierwszej gwiazdki na niebie — to sygnał do rozpoczęcia kolacji. Na stole pod obrusem kładzie się trochę siana na pamiątkę stajenki betlejemskiej.',
+          'Na wigilijnym stole muszą znaleźć się dokładnie dwanaście potraw postnych — na cześć dwunastu apostołów. Tradycyjne potrawy to: barszcz czerwony z uszkami, kapusta z grzybami, pierogi, karp smażony lub w galarecie, śledź w różnych formach, kutia, makowiec, piernik, kompot z suszu. Przed kolacją łamiemy się opłatkiem i składamy sobie życzenia.',
+          'Po kolacji rodzina śpiewa kolędy przy choince, a dzieci otwierają prezenty. W niektórych rodzinach zostawia się jedno wolne nakrycie przy stole — dla nieoczekiwanego gościa lub na pamiątkę nieobecnych bliskich. Wieczorem wielu Polaków chodzi na Pasterkę — mszę świętą o północy.'
+        ],
+        translations: [
+          'Вигилия, то есть Рождественский вечер 24 декабря, — важнейший вечер в польском году. Семьи собираются за столом и вместе ждут появления первой звезды на небе — это сигнал к началу ужина. Под скатертью кладут немного сена в память о Вифлеемских яслях.',
+          'На рождественском столе должно быть ровно двенадцать постных блюд — в честь двенадцати апостолов. Традиционные блюда: красный борщ с ушками, капуста с грибами, пироги, жареный карп или карп в желе, селёдка в разных видах, кутья, маковый рулет, пряник, компот из сухофруктов. Перед ужином ломают облатку и поздравляют друг друга.',
+          'После ужина семья поёт колядки у ёлки, а дети открывают подарки. В некоторых семьях оставляют одно свободное место за столом — для неожиданного гостя или в память об отсутствующих близких. Вечером многие поляки идут на Пастерку — полуночную мессу.'
+        ],
+        variants: [],
+        tip: 'ОБЯЗАТЕЛЬНО знайте: 12 блюд на Вигилии! Это спрашивают почти всегда. Перечислите хотя бы 6: barszcz, pierogi, karp, kapusta z grzybami, kutia, makowiec.'
+      },
+      {
+        pl: 'Jak obchodzi się Wielkanoc?',
+        ru: 'Как отмечают Пасху?',
+        answers: [
+          'Wielkanoc to najważniejsze święto religijne w Polsce. Obchody zaczynają się w Wielki Tydzień — szczególnie ważna jest Wielka Sobota, kiedy Polacy przygotowują koszyczki ze święconką: wkładają do nich chleb, jajka, kiełbasę, szynkę, chrzan, sól i babkę wielkanocną, a następnie zanoszą do kościoła po błogosławieństwo.',
+          'W Niedzielę Wielkanocną Polacy spożywają uroczyste śniadanie wielkanocne, na którym pojawiają się pokarmy ze święconki. Tradycyjne dania to: żurek z jajkiem i kiełbasą, biała kiełbasa, babka wielkanocna, mazurek — słodkie ciasto zdobione lukrem. Rodziny zbierają się razem i świętują zmartwychwstanie Jezusa.',
+          'W Lany Poniedziałek, czyli Śmigus-Dyngus, oblewamy się nawzajem wodą. To staropolski zwyczaj — pierwotnie oblewanie wodą miało przynosić zdrowie i płodność. Dziś to przede wszystkim radosna zabawa, podczas której dzieci i młodzież oblewają się z wiader, pistoletów na wodę i balonów.'
+        ],
+        translations: [
+          'Пасха — главный религиозный праздник в Польше. Торжества начинаются на Страстной неделе — особенно важна Великая суббота, когда поляки готовят корзинки со свенцонкой: кладут туда хлеб, яйца, колбасу, ветчину, хрен, соль и пасхальный кекс, а затем несут в церковь для благословения.',
+          'В Пасхальное воскресенье поляки едят торжественный завтрак, на котором появляются продукты из свенцонки. Традиционные блюда: журек с яйцом и колбасой, белая колбаса, пасхальный кекс, мазурек — сладкий пирог, украшенный глазурью. Семьи собираются вместе и отмечают воскресение Иисуса.',
+          'В Поливальный понедельник (śmigus-dyngus) обливают друг друга водой. Это древнепольский обычай — изначально обливание водой должно было приносить здоровье и плодородие. Сегодня это прежде всего радостное веселье, во время которого дети и молодёжь обливаются из вёдер, водяных пистолетов и шариков.'
+        ],
+        variants: [],
+        tip: 'Śmigus-dyngus = Лany Poniedziałek. Это одно и то же. Плюс święconka — не путайте с ужином Вигилии!'
+      },
+      {
+        pl: 'Dlaczego świętujemy 3 maja i 11 listopada?',
+        ru: 'Зачем отмечают 3 мая и 11 ноября?',
+        answers: [
+          '3 maja to Święto Konstytucji — rocznica uchwalenia Konstytucji 3 Maja 1791 roku. Była to jedna z pierwszych nowoczesnych konstytucji na świecie, uchwalona zaledwie kilka lat po konstytucji Stanów Zjednoczonych. Wprowadzała trójpodział władzy, ograniczała przywileje szlacheckie i wzmacniała władzę centralną.',
+          '11 listopada to Narodowe Święto Niepodległości — rocznica odzyskania przez Polskę niepodległości w 1918 roku po 123 latach zaborów. W tym dniu odbywają się parady wojskowe, uroczystości patriotyczne i biegi niepodległości w całej Polsce. To jeden z najważniejszych dni w polskim kalendarzu.',
+          'Oba święta łączy jeden temat — walka o wolność i suwerenność Polski. Polacy są bardzo przywiązani do swojej niepodległości, bo przez wieki byli jej pozbawiani. Te daty przypominają, że Polska przetrwała najtrudniejsze próby historii i odrodziła się jako wolne państwo.'
+        ],
+        translations: [
+          '3 мая — День Конституции — годовщина принятия Конституции 3 мая 1791 года. Это была одна из первых современных конституций в мире, принятая всего через несколько лет после конституции США. Она вводила разделение властей, ограничивала шляхетские привилегии и укрепляла центральную власть.',
+          '11 ноября — Национальный праздник Независимости — годовщина обретения Польшей независимости в 1918 году после 123 лет разделов. В этот день по всей Польше проходят военные парады, патриотические торжества и марафоны независимости. Это один из важнейших дней польского календаря.',
+          'Оба праздника объединяет одна тема — борьба за свободу и суверенитет Польши. Поляки очень привязаны к своей независимости, потому что веками её лишались. Эти даты напоминают, что Польша пережила тяжелейшие испытания истории и возродилась как свободное государство.'
+        ],
+        variants: [],
+        tip: 'Путаница: 3 мая — Конституция (1791), 11 ноября — Независимость (1918), 15 августа — День Войска Польского/Чудо на Висле (1920). Три разные даты!'
+      }
+    ]
+  },
+  {
+    id: 's4', icon: '🎖️', label: 'Известные поляки',
+    title: 'Известные поляки', ru: 'Обязательные персоны для собеседования',
+    questions: [
+      {
+        pl: 'Kim był Jan Paweł II?',
+        ru: 'Кем был Ян Павел II?',
+        answers: [
+          'Jan Paweł II, właściwie Karol Józef Wojtyła, urodził się 18 maja 1920 roku w Wadowicach w Małopolsce. Studiował polonistykę na Uniwersytecie Jagiellońskim w Krakowie, a następnie teologię. Podczas II Wojny Światowej działał w podziemnym seminarium. W 1946 roku przyjął święcenia kapłańskie.',
+          'W 1978 roku Karol Wojtyła został wybrany na Papieża — przyjął imię Jan Paweł II. Był pierwszym Polakiem i pierwszym nie-Włochem od 455 lat na tym stanowisku. Jego wybór był dla Polaków ogromnym powodem do dumy. Znał ponad siedem języków, dużo podróżował i spotykał się z milionami ludzi na całym świecie.',
+          'Jan Paweł II odegrał kluczową rolę w obaleniu komunizmu w Europie Wschodniej — wspierał „Solidarność" i dawał nadzieję milionom Polaków. Beatyfikowany w 2011 roku, kanonizowany w 2014 roku. W Polsce jest traktowany jak święty narodowy, a jego portret wisi w niemal każdym polskim domu.'
+        ],
+        translations: [
+          'Ян Павел II, настоящее имя Кароль Юзеф Войтыла, родился 18 мая 1920 года в Вадовице в Малопольше. Учился на факультете польской филологии в Ягеллонском университете в Кракове, затем изучал теологию. В годы Второй мировой войны действовал в подпольной семинарии. В 1946 году принял священнический сан.',
+          'В 1978 году Кароль Войтыла был избран Папой — принял имя Ян Павел II. Он стал первым поляком и первым не-итальянцем за 455 лет на этом посту. Его избрание стало для поляков огромным поводом для гордости. Он знал более семи языков, много путешествовал и встречался с миллионами людей по всему миру.',
+          'Ян Павел II сыграл ключевую роль в падении коммунизма в Восточной Европе — поддерживал «Солидарность» и давал надежду миллионам поляков. Беатифицирован в 2011, канонизирован в 2014 году. В Польше его почитают как национального святого, а его портрет висит почти в каждом польском доме.'
+        ],
+        variants: [],
+        tip: 'Ян Павел II — самый важный поляк для консула. Обязательно знайте: 1920 — рождение, 1978 — папа, 2005 — смерть, 2014 — канонизация. Wadowice — город рождения.'
+      },
+      {
+        pl: 'Kim był Lech Wałęsa?',
+        ru: 'Кем был Лех Валенса?',
+        answers: [
+          'Lech Wałęsa urodził się w 1943 roku. Był elektrykiem pracującym w Stoczni Gdańskiej im. Lenina. W sierpniu 1980 roku stanął na czele strajku robotniczego i stał się twarzą ruchu demokratycznego w Polsce. Jego charyzma i odwaga uczyniły go liderem „Solidarności" — pierwszego wolnego związku zawodowego w krajach komunistycznych.',
+          'Za swoją działalność na rzecz wolności i praw człowieka Wałęsa otrzymał w 1983 roku Pokojową Nagrodę Nobla. Władze komunistyczne więziły go i inwigilowały, ale nie potrafiły złamać jego ducha. W stanie wojennym w 1981 roku był internowany przez prawie rok.',
+          'W 1990 roku Lech Wałęsa wygrał pierwsze demokratyczne wybory prezydenckie w Polsce i został głową państwa. Jego prezydentura trwała do 1995 roku. Jest symbolem pokojowej rewolucji i transformacji ustrojowej nie tylko w Polsce, ale i w całej Europie Wschodniej.'
+        ],
+        translations: [
+          'Лех Валенса родился в 1943 году. Был электриком, работавшим на Гданьской судоверфи имени Ленина. В августе 1980 года возглавил рабочую забастовку и стал лицом демократического движения в Польше. Его харизма и отвага сделали его лидером «Солидарности» — первого свободного профсоюза в коммунистических странах.',
+          'За свою деятельность в защиту свободы и прав человека Валенса в 1983 году получил Нобелевскую премию мира. Коммунистические власти его арестовывали и следили за ним, но не могли сломить его дух. В условиях военного положения 1981 года он был интернирован почти на год.',
+          'В 1990 году Лех Валенса выиграл первые демократические президентские выборы в Польше и стал главой государства. Его президентство длилось до 1995 года. Он символ мирной революции и смены строя не только в Польше, но и во всей Восточной Европе.'
+        ],
+        variants: [],
+        tip: null
+      },
+      {
+        pl: 'Kim był Fryderyk Chopin?',
+        ru: 'Кем был Фредерик Шопен?',
+        answers: [
+          'Fryderyk Chopin urodził się w 1810 roku w Żelazowej Woli pod Warszawą, w rodzinie z polsko-francuskimi korzeniami. Już jako dziecko wykazywał nadzwyczajny talent muzyczny — pierwsze publiczne koncerty dawał jako siedmiolatek. Uczył się w Szkole Głównej Muzyki w Warszawie i szybko zyskał sławę jako wirtuoz fortepianu.',
+          'W 1830 roku Chopin wyjechał z Polski do Francji i nigdy nie powrócił — powstanie listopadowe przekreśliło jego plany powrotu. Resztę życia spędził w Paryżu, komponując i ucząc muzyki. Mimo emigracji pozostał głęboko przywiązany do Polski — w jego muzyce można usłyszeć polskie rytmy i melodie: mazurki, polonezy, kujawiaki.',
+          'Chopin stworzył wyjątkowy styl fortepianowy — jego nokturny, etiudy i ballady należą do największych arcydzieł muzyki klasycznej. Zmarł w Paryżu w 1849 roku w wieku 39 lat. Zgodnie z jego wolą serce zostało wyjęte i przewiezione do Warszawy — jest złożone w kościele Świętego Krzyża. Ciało spoczywa na paryskim cmentarzu Père-Lachaise.'
+        ],
+        translations: [
+          'Фредерик Шопен родился в 1810 году в Желязовой Воле под Варшавой, в семье с польско-французскими корнями. Ещё ребёнком он проявлял исключительный музыкальный талант — первые публичные концерты давал в семь лет. Учился в Главной музыкальной школе в Варшаве и быстро прославился как виртуоз фортепиано.',
+          'В 1830 году Шопен уехал из Польши во Францию и больше не возвращался — Ноябрьское восстание перечеркнуло его планы возвращения. Остаток жизни провёл в Париже, сочиняя и обучая музыке. Несмотря на эмиграцию, оставался глубоко привязан к Польше — в его музыке слышны польские ритмы и мелодии: мазурки, полонезы, куявяки.',
+          'Шопен создал уникальный фортепианный стиль — его ноктюрны, этюды и баллады принадлежат к величайшим шедеврам классической музыки. Умер в Париже в 1849 году в возрасте 39 лет. По его воле сердце было извлечено и перевезено в Варшаву — оно хранится в костёле Святого Креста. Тело покоится на парижском кладбище Пер-Лашез.'
+        ],
+        variants: [],
+        tip: 'Сердце в Варшаве, тело в Париже — это запоминается! И важная деталь: Шопен писал мазурки и полонезы — польские народные танцы.'
+      },
+      {
+        pl: 'Kim był Adam Mickiewicz?',
+        ru: 'Кем был Адам Мицкевич?',
+        answers: [
+          'Adam Mickiewicz urodził się w 1798 roku w Zaosiu lub Nowogródku — na ziemiach Wielkiego Księstwa Litewskiego, które są dziś częścią Białorusi. Studiował na Uniwersytecie Wileńskim, gdzie zetknął się z ideami romantyzmu. Już wtedy pisał wiersze, które zdradzały wielki talent literacki.',
+          'Mickiewicz jest autorem „Pana Tadeusza" — epopei narodowej, która opowiada o życiu polskiej szlachty na Litwie na początku XIX wieku. Napisał też „Dziady" — dramat romantyczny pełen mistycyzmu, oraz „Sonety Krymskie". Jego twórczość wywarła ogromny wpływ na polską tożsamość narodową i literaturę.',
+          'Dla mnie jako Białorusina Mickiewicz jest szczególnie bliski — urodził się i wychował na ziemiach, które dziś należą do Białorusi. Miasteczko Nowogródek (dziś Navahrudak na Białorusi) uważa go za swojego poetę. Mickiewicz jest łącznikiem między polską a białoruską historią i kulturą.'
+        ],
+        translations: [
+          'Адам Мицкевич родился в 1798 году в Заосье или Новогрудке — на землях Великого Княжества Литовского, которые сегодня являются частью Беларуси. Учился в Виленском университете, где познакомился с идеями романтизма. Уже тогда писал стихи, свидетельствующие о большом литературном таланте.',
+          'Мицкевич — автор «Пана Тадеуша» — национальной эпопеи, рассказывающей о жизни польской шляхты в Литве в начале XIX века. Написал также «Дзяды» — романтическую драму, полную мистицизма, и «Крымские сонеты». Его творчество оказало огромное влияние на польскую национальную идентичность и литературу.',
+          'Для меня как белоруса Мицкевич особенно близок — он родился и вырос на землях, которые сегодня принадлежат Беларуси. Городок Новогрудок (сегодня Навагрудак в Беларуси) считает его своим поэтом. Мицкевич — связующее звено между польской и белорусской историей и культурой.'
+        ],
+        variants: [],
+        tip: 'Мицкевич родился на белорусских землях — используйте это как личный аргумент. Это показывает консулу глубину вашей связи с польской культурой.'
+      }
+    ]
+  },
+  {
+    id: 's5', icon: '🗺️', label: 'География',
+    title: 'География Польши', ru: 'Реки, горы, города и границы',
+    questions: [
+      {
+        pl: 'Proszę opowiedzieć o geografii Polski',
+        ru: 'Расскажите о географии Польши',
+        answers: [
+          'Polska leży w środkowej Europie i ma powierzchnię około 312 tysięcy kilometrów kwadratowych. Jest podzielona na 16 województw. Stolicą i największym miastem jest Warszawa z populacją ponad 1,8 miliona mieszkańców. Polska jest krajem nizinnym w centrum, z górami na południu.',
+          'Największą rzeką jest Wisła, która przepływa przez Kraków i Warszawę i wpada do Bałtyku. Drugą rzeką jest Odra, stanowiąca częściowo granicę z Niemcami. Na południu Polski wznoszą się Tatry — najwyższe polskie góry, a najwyższy szczyt to Rysy (2499 m n.p.m.). Na północy mamy Morze Bałtyckie z pięknymi plażami, a na północnym wschodzie słynne Jeziora Mazurskie — polskie Mazury.',
+          'Polska graniczy z siedmioma krajami: Niemcami na zachodzie, Czechami i Słowacją na południu, Ukrainą i Białorusią na wschodzie, Litwą na północnym wschodzie i Rosją (Obwód Kaliningradzki) na północy. To strategiczne położenie sprawiło, że przez wieki Polska była areną wielkich konfliktów europejskich.'
+        ],
+        translations: [
+          'Польша расположена в Центральной Европе и имеет площадь около 312 тысяч квадратных километров. Разделена на 16 воеводств. Столица и крупнейший город — Варшава с населением более 1,8 миллиона жителей. Польша — равнинная страна в центре, с горами на юге.',
+          'Крупнейшая река — Висла, протекающая через Краков и Варшаву и впадающая в Балтийское море. Вторая река — Одра, частично образующая границу с Германией. На юге Польши возвышаются Татры — высочайшие польские горы, высшая точка — Рысы (2499 м н.у.м.). На севере — Балтийское море с красивыми пляжами, а на северо-востоке — знаменитые Мазурские озёра.',
+          'Польша граничит с семью странами: Германией на западе, Чехией и Словакией на юге, Украиной и Беларусью на востоке, Литвой на северо-востоке и Россией (Калининград) на севере. Это стратегическое положение сделало Польшу на протяжении веков ареной крупных европейских конфликтов.'
+        ],
+        variants: [],
+        tip: 'Беларусь граничит с Польшей — это ваша географическая связь! Назовите это, когда говорите о границах.'
+      }
+    ]
+  },
+  {
+    id: 's6', icon: '🦅', label: 'Символы',
+    title: 'Символы и политика', ru: 'Флаг, гимн, герб, президент, ЕС',
+    questions: [
+      {
+        pl: 'Jakie są symbole narodowe Polski?',
+        ru: 'Какие национальные символы Польши?',
+        answers: [
+          'Polska ma trzy główne symbole narodowe: flagę, godło i hymn. Flaga polska składa się z dwóch poziomych pasów — białego u góry i czerwonego u dołu. Białego i czerwonego — to kolory narodowe Polski od XIV wieku. Godłem jest biały orzeł w złotej koronie na czerwonym tle — symbol Piastów, pierwszej dynastii polskich królów.',
+          'Hymnem Polski jest „Mazurek Dąbrowskiego", znany też jako „Jeszcze Polska nie zginęła". Słowa napisał Józef Wybicki w 1797 roku we Włoszech, gdy polskie Legiony walczyły u boku Napoleona. Melodia pochodzi z tradycyjnego tańca mazur. Hymn wyraża niezłomną wolę przetrwania narodu pomimo historycznych katastrof.',
+          'Pierwsze słowa hymnu — „Jeszcze Polska nie zginęła, kiedy my żyjemy" — są niezwykle wymowne: napisano je, gdy Polski nie było na mapach Europy. Wyrażają wiarę, że dopóki Polacy żyją, Polska istnieje. To przesłanie było przez pokolenia symbolem nadziei i oporu. Walutą Polski jest złoty (PLN), a stolica to Warszawa.'
+        ],
+        translations: [
+          'У Польши есть три главных национальных символа: флаг, герб и гимн. Польский флаг состоит из двух горизонтальных полос — белой сверху и красной снизу. Белый и красный — национальные цвета Польши с XIV века. Герб — белый орёл в золотой короне на красном фоне — символ Пястов, первой династии польских королей.',
+          'Гимн Польши — «Мазурка Домбровского», известная также как «Ещё Польша не погибла». Слова написал Юзеф Выбицкий в 1797 году в Италии, когда польские Легионы сражались на стороне Наполеона. Мелодия происходит от традиционного танца мазур. Гимн выражает несломленную волю народа к выживанию вопреки историческим катастрофам.',
+          'Первые слова гимна — «Ещё Польша не погибла, пока мы живём» — необычайно выразительны: они были написаны, когда Польши не было на картах Европы. Они выражают веру в то, что пока живут поляки — Польша существует. Это послание поколениями было символом надежды и сопротивления. Валюта Польши — злотый (PLN), столица — Варшава.'
+        ],
+        variants: [],
+        tip: 'Запомните: гимн = «Mazurek Dąbrowskiego» = «Jeszcze Polska nie zginęła». Первая строка — обязательно!'
+      },
+      {
+        pl: 'Kto jest aktualnie prezydentem Polski?',
+        ru: 'Кто сейчас президент Польши?',
+        answers: [
+          'Aktualnym prezydentem Polski jest Rafał Trzaskowski, który wygrał wybory prezydenckie w 2025 roku. Wcześniej był prezydentem Warszawy. Premierem jest Donald Tusk, który kieruje koalicyjnym rządem od końca 2023 roku.',
+          'Polska jest republiką parlamentarno-gabinetową. Parlament składa się z dwóch izb: Sejmu (460 posłów) i Senatu (100 senatorów). Prezydent jest głową państwa, ale rzeczywista władza wykonawcza spoczywa w rękach rządu z premierem na czele.',
+          'Polska jest członkiem Unii Europejskiej od 1 maja 2004 roku i NATO od 1999 roku. Mimo członkostwa w UE Polska zachowała swoją walutę — złoty — i nie przeszła na euro. Polska jest jedną z kluczowych gospodarek Europy Środkowej i aktywnym uczestnikiem europejskiej polityki.'
+        ],
+        translations: [
+          'Нынешним президентом Польши является Рафал Тшасковский, выигравший президентские выборы в 2025 году. До этого был президентом Варшавы. Премьер-министр — Дональд Туск, руководящий коалиционным правительством с конца 2023 года.',
+          'Польша — парламентско-кабинетная республика. Парламент состоит из двух палат: Сейма (460 депутатов) и Сената (100 сенаторов). Президент является главой государства, но реальная исполнительная власть принадлежит правительству во главе с премьер-министром.',
+          'Польша является членом Европейского союза с 1 мая 2004 года и НАТО с 1999 года. Несмотря на членство в ЕС, Польша сохранила свою валюту — злотый — и не перешла на евро. Польша — одна из ключевых экономик Центральной Европы и активный участник европейской политики.'
+        ],
+        variants: [],
+        tip: 'Перед собеседованием обязательно уточните актуального президента — эта информация меняется! По состоянию на 2026 год — Рафал Тшасковский.'
+      }
+    ]
+  },
+  {
+    id: 's7', icon: '🍽️', label: 'Кухня и культура',
+    title: 'Кухня и культура', ru: 'Блюда, легенды, традиции',
+    questions: [
+      {
+        pl: 'Jakie tradycyjne polskie potrawy Pan/Pani zna?',
+        ru: 'Какие традиционные польские блюда вы знаете?',
+        answers: [
+          'Polska kuchnia jest syta, smaczna i oparta na prostych, naturalnych składnikach. Najbardziej znane dania to: bigos — kapusta kiszona duszona z różnymi gatunkami mięsa i wędliny, pierogi — cienkie ciasto nadziane kapustą z grzybami, mięsem lub serem z ziemniakami, żurek — kwaśna zupa na bazie kwasu żytniego z kiełbasą i jajkiem.',
+          'Inne tradycyjne potrawy to: kotlet schabowy w panierce — przypominający wiedeński sznycel, gołąbki — kapusta nadziewana mięsem mielonym z ryżem polana sosem pomidorowym lub grzybowym, barszcz czerwony — zupa buraczana, flaki — zupa z flaków wołowych. Na deser: sernik, makowiec i szarlotka.',
+          'Miałem/Miałam okazję spróbować żurku w Białymstoku i bardzo mi smakował. Polska kuchnia jest bliska białoruskiej — też lubimy kapustę, ziemniaki i dania z mięsa. Ale każda potrawa ma swój niepowtarzalny polski charakter i smak. Chciałbym/Chciałabym nauczyć się gotować pierogi tak jak robiła je moja babcia.'
+        ],
+        translations: [
+          'Польская кухня сытная, вкусная и основана на простых, натуральных ингредиентах. Самые известные блюда: бигос — тушёная квашеная капуста с разными видами мяса и колбасой, пироги — тонкое тесто с начинкой из капусты с грибами, мяса или сыра с картошкой, журек — кислый суп на ржаной закваске с колбасой и яйцом.',
+          'Другие традиционные блюда: котлета схабова в панировке — напоминает венский шницель, голубцы — капуста, фаршированная фаршем с рисом, политая томатным или грибным соусом, красный борщ — свекольный суп, фляки — суп из говяжьих рубцов. На десерт: творожный пирог, маковый рулет и яблочный пирог.',
+          'Мне удалось попробовать журек в Белостоке и очень понравился. Польская кухня близка белорусской — мы тоже любим капусту, картофель и мясные блюда. Но каждое блюдо имеет свой неповторимый польский характер и вкус. Я хотел/хотела бы научиться готовить пироги так, как делала их моя бабушка.'
+        ],
+        variants: [],
+        tip: 'Личный опыт («пробовал журек, понравился», «бабушка готовила пироги») делает ответ живым. Консул видит разницу между заученным текстом и настоящей историей.'
+      },
+      {
+        pl: 'Gdzie mieszka Smok Wawelski?',
+        ru: 'Где живёт Вавельский дракон?',
+        answers: [
+          'Smok Wawelski, według legendy, mieszkał w jaskini pod Wzgórzem Wawelskim nad Wisłą w Krakowie. Terroryzował miasto, pożerając bydło i domagając się ofiar z dziewic. Król Krak nie mógł go pokonać — rycerze ginęli jeden po drugim próbując zabić potwora.',
+          'Sprytny szewczyk Skuba wymyślił podstęp — napchał owczą skórę siarką, smołą i innymi łatwopalnymi materiałami i położył przed jaskinią smoka. Smok połknął przynętę, a gdy żar siarkowy zaczął go palić od środka, pędził do Wisły i pił wodę, aż w końcu pękł.',
+          'Dziś pod Wawelem stoi metalowa rzeźba smoka, która co kilka minut zieje prawdziwym ogniem — to jedna z najpopularniejszych atrakcji turystycznych Krakowa. Smok Wawelski jest symbolem Krakowa i jedną z najbardziej znanych polskich legend. Nawet polskie dzieci w przedszkolu znają tę bajkę.'
+        ],
+        translations: [
+          'По легенде, Вавельский дракон жил в пещере под Вавельским холмом над Вислой в Кракове. Он терроризировал город, пожирая скот и требуя девушек в жертву. Король Крак не мог его победить — рыцари погибали один за другим, пытаясь убить чудовище.',
+          'Хитрый сапожник Скуба придумал ловушку — набил овчину серой, смолой и другими горючими материалами и положил перед пещерой дракона. Дракон проглотил приманку, а когда серный жар начал жечь его изнутри, он бежал к Висле и пил воду, пока наконец не лопнул.',
+          'Сегодня под Вавелем стоит металлическая скульптура дракона, которая каждые несколько минут извергает настоящий огонь — это одна из самых популярных туристических достопримечательностей Кракова. Вавельский дракон — символ Кракова и одна из наиболее известных польских легенд. Даже польские дети в детском саду знают эту сказку.'
+        ],
+        variants: [],
+        tip: 'Легенду о Вавельском драконе спрашивают часто! Три ключевых слова: Kraków — Wawel — Wisła. Сапожника зовут Skuba.'
+      }
+    ]
+  }
+];
+
+function buildNav() {
+  const sidebar = document.getElementById('sidebarNav');
+  const mobile = document.getElementById('mobileNav');
+  sections.forEach((s, i) => {
+    const total = s.questions.length;
+    const btn = document.createElement('button');
+    btn.className = 'nav-item' + (i === 0 ? ' active' : '');
+    btn.innerHTML = `<span class="nav-icon">${s.icon}</span>${s.label}<span class="nav-count">${total}</span>`;
+    btn.onclick = () => activateSection(i);
+    sidebar.appendChild(btn);
+
+    const mbtn = document.createElement('button');
+    mbtn.className = 'mobile-nav-btn' + (i === 0 ? ' active' : '');
+    mbtn.textContent = s.icon + ' ' + s.label;
+    mbtn.onclick = () => activateSection(i);
+    mobile.appendChild(mbtn);
+  });
+}
+
+function buildContent() {
+  const content = document.getElementById('content');
+  sections.forEach((s, si) => {
+    const sec = document.createElement('div');
+    sec.className = 'section' + (si === 0 ? ' active' : '');
+    sec.id = s.id;
+
+    let html = `<div class="section-header">
+      <div class="section-label">${s.icon} ${s.label}</div>
+      <h2 class="section-title">${s.title}</h2>
+      <p class="section-desc">${s.ru}</p>
+    </div>`;
+
+    s.questions.forEach((q, qi) => {
+      const num = String(qi + 1).padStart(2, '0');
+      html += `<div class="qa-card" id="${s.id}-q${qi}">
+        <div class="qa-head" onclick="toggleCard('${s.id}-q${qi}')">
+          <div class="qa-head-left">
+            <div class="qa-num">Вопрос ${num}</div>
+            <div class="qa-polish">${q.pl}</div>
+            <div class="qa-russian">${q.ru}</div>
+          </div>
+          <div class="qa-toggle">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 4l4 4 4-4" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="qa-body">
+          <div class="tabs-row">
+            <button class="tab-btn active" onclick="switchTab('${s.id}-q${qi}', 'pl', this)">🇵🇱 По-польски</button>
+            <button class="tab-btn" onclick="switchTab('${s.id}-q${qi}', 'tr', this)">🇷🇺 Перевод</button>
+            ${q.variants.length > 0 ? `<button class="tab-btn" onclick="switchTab('${s.id}-q${qi}', 'alt', this)">💬 Варианты</button>` : ''}
+          </div>
+          <div class="answer-panel active" data-panel="${s.id}-q${qi}-pl">
+            ${q.answers.map(a => `<div class="answer-block">${a}</div>`).join('')}
+            ${q.tip ? `<div class="tip-box">${q.tip}</div>` : ''}
+          </div>
+          <div class="answer-panel" data-panel="${s.id}-q${qi}-tr">
+            ${q.translations.map(t => `<div class="translation-block">${t}</div>`).join('')}
+          </div>
+          ${q.variants.length > 0 ? `<div class="answer-panel" data-panel="${s.id}-q${qi}-alt">
+            <div class="variants-wrap">
+              ${q.variants.map(v => `<div class="variant-item">
+                <div class="variant-label">${v.label}</div>
+                <div class="variant-text">${v.pl}</div>
+                <div class="variant-tr">${v.ru}</div>
+              </div>`).join('')}
+            </div>
+          </div>` : ''}
+        </div>
+      </div>`;
+    });
+
+    sec.innerHTML = html;
+    content.appendChild(sec);
+  });
+}
+
+function toggleCard(id) {
+  const card = document.getElementById(id);
+  card.classList.toggle('open');
+}
+
+function switchTab(cardId, panel, btn) {
+  const card = document.getElementById(cardId);
+  card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  card.querySelectorAll('.answer-panel').forEach(p => {
+    p.classList.toggle('active', p.dataset.panel === `${cardId}-${panel}`);
+  });
+}
+
+function activateSection(i) {
+  document.querySelectorAll('.nav-item').forEach((b, j) => b.classList.toggle('active', i === j));
+  document.querySelectorAll('.mobile-nav-btn').forEach((b, j) => b.classList.toggle('active', i === j));
+  document.querySelectorAll('.section').forEach((s, j) => s.classList.toggle('active', i === j));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+buildNav();
+buildContent();
+</script>
+</body>
+</html>
